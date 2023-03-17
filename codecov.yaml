@@ -1,0 +1,40 @@
+codecov:
+  # The default branch is used to identify:
+  #  Which branch to cache the repository YAML for UI changes.
+  #  Which branch is the first branch on the repository dashboard in Codecov.
+  branch: main
+  # Show the Codecov status without waiting for other status checks to complete or pass.
+  require_ci_to_pass: no
+
+comment:             
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false  # if true: only post the comment if coverage changes
+  require_base: no        # [yes :: must have a base report to post]
+  require_head: yes       # [yes :: must have a head report to post]
+  
+
+github_checks:
+  # Specify whether to use GitHub Checks annotations or normal statuses.
+  annotations: true
+
+coverage:
+  status:
+    patch:
+      default:
+        # Choose a minimum coverage ratio that the commit must meet to be considered a success.
+        # <number> specify a target of an exact coverage number.
+        target: 70%
+        # Allow the coverage to drop by X%, and posting a success status.
+        threshold: 5%
+        # Use the pull request base if the commit is on a pull request. If not, the parent commit will be used.
+        base: auto
+        # Only post a status to pull requests.
+        only_pulls: true
+        flags:
+          - unit-tests
+
+
+flag_management:
+  default_rules:
+    carryforward: true
